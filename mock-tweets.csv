@@ -1,0 +1,14 @@
+index,tweet,sentiment
+0, "Did you see that ludicrous display", neutral
+1, "Feeling down", negative
+2, "Good day today", positive
+3, "I can't wait", positive
+4, "New Avengers film is pretty alright", neutral
+5, "Another bad day", negative
+6, "Feeling down", negative
+7, "Slightly better day", positive
+8, "Done with this", negative
+9, "So fed up", negative
+10, "Going for dinner today", neutral
+11, "Very anxious right now", negative
+12, "Could be better", neutral

@@ -1,0 +1,11 @@
+index,phrase,strength
+0, Sad, 0.4
+1, Depressed, 0.6
+2, Anxious, 0.7
+3, Frustrated, 0.5
+4, Lonely, 0.8
+5, Fed up, 0.6
+6, Suicidal, 0.9
+7, Manic, 0.8
+8, Miserable, 0.4
+9, Bad, 0.4

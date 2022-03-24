@@ -1,0 +1,11 @@
+index,emotion,phrase,strength
+0, Negative,"Feeling down",0.5
+1, Negative,"I don't care any more",0.7
+2, Negative,"done with this",0.6
+3, Negative,"Another bad day",0.3
+4, Negative,"Same old stuff",0.5
+5, Positive,"Feeling great",0.8
+6, Positive,"Great day today",0.7
+7, Positive,"I'm fine",0.4
+8, Positive,"Excited",0.6
+9, Positive,"Can't wait",0.8
