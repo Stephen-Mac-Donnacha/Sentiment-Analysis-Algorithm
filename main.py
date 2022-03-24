@@ -103,8 +103,6 @@ def capture_sentiment_profile():
     for i in range(len(dates)):
         dates[i] = sanitise_date(dates[i])
 
-    print(dates)
-    print(sent_with_dates)
     for i in range(0, len(sent_with_dates)):
         if sent_with_dates[dates[i]] == "positive":
             pos_count += 1
@@ -230,6 +228,9 @@ def capture_profile_and_analyse():
 
     # Capture changes in frequency of posting
     changes_in_frequency()
+
+    # Capture consecutive days were the sentiment was negative
+    look_for_consec_neg_days()
 
 
 def main():
