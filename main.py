@@ -13,7 +13,7 @@ def sanitise_str(string):
     return string
 
 
-# Method to sanitise a date, for analysis of frequency and summation of sentiment
+# Method to sanitise a date, for analysis of frequency and summation of sentiment, utility method
 def sanitise_date(date_string):
     date_string = date_string.strip()
     return date_string
@@ -126,8 +126,6 @@ def capture_changes_in_sentiment():
     sent_list = list(days_tweet_sent.values())
     date_list = list(profile['date'])
 
-    print(overall_sentiment)
-
     for i in range(len(sent_list) - 1):
         if sent_list[i] != sent_list[i + 1]:
             print("Sentiment Changed from:", sent_list[i], "to:", sent_list[i + 1], "on: ", date_list[i + 1])
@@ -201,11 +199,11 @@ def changes_in_frequency():
     else:
         print("No change in frequency flagged")
 
-
+# Utility method, designed to extract the days, from a list of dates
 def extract_days(lst):
     return [item[0] for item in lst]
 
-
+# Utility method, designed to extract the month, from a list of dates
 def extract_months(lst):
     return [item[1] for item in lst]
 
