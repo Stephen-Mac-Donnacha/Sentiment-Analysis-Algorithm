@@ -1,4 +1,4 @@
-index,tweet,sentiment,day,date
+index,tweet,day,date
 0, Great mood today, monday, 01-02-21
 1, Exciting, monday, 01-02-21
 2, Today was a good day,monday, 01-02-21
@@ -15,7 +15,7 @@ index,tweet,sentiment,day,date
 13, Feeling Depressed, friday, 05-02-21
 14, Feeling Anxious, friday, 05-02-21
 15, Great mood today, saturday, 06-02-21
-16, Exciting, 06-02-21
+16, Exciting, saturday, 06-02-21
 17, Today was a good day, sunday, 07-02-21
 18, Thank god for that, sunday, 07-02-21
 19, Feeling grateful, sunday, 07-02-21
@@ -45,3 +45,4 @@ index,tweet,sentiment,day,date
 43, Had enough, sunday, 21-02-21
 44, Feeling Depressed, sunday, 21-02-21
 45, Feeling Anxious, sunday, 21-02-21
+46, My wife stole my dang garlic bread again Feeling angry and suicidal right now Might kill her kinda quirky like that mondays, monday, 22-02-21
