@@ -74,7 +74,6 @@ def capture_sentiment_days():
     sent_strength_array = []
     days_tweet_sent = {}
 
-    # Sanitise dates
     for i in range(len(dates)):
         dates[i] = sanitise_date(dates[i])
 
@@ -104,6 +103,8 @@ def capture_sentiment_profile():
     for i in range(len(dates)):
         dates[i] = sanitise_date(dates[i])
 
+    print(dates)
+    print(sent_with_dates)
     for i in range(0, len(sent_with_dates)):
         if sent_with_dates[dates[i]] == "positive":
             pos_count += 1
@@ -199,6 +200,8 @@ def changes_in_frequency():
 
     if gap_days > consecutive_days:
         print("Change in frequency flagged ")
+    else:
+        print("No change in frequency flagged")
 
 
 def extract_days(lst):
@@ -209,23 +212,28 @@ def extract_months(lst):
     return [item[1] for item in lst]
 
 
-def capture_weekly_sentiment():
-    dates = profile['date']
-    res = []
-    week_1 = []
-    week_2 = []
-    week_3 = []
-    week_4 = []
-    i = 0
+def capture_profile_and_analyse():
+    # Perform the entire range of sentiment analysis for the profile
+    # Capture the sentiment for each day a tweet was posted
+    sentiment_for_profile = capture_sentiment_days()
+    print(sentiment_for_profile)
+
+    # Capture the overall sentiment of a profile
+    sentiment_profile = capture_sentiment_profile()
+    print("Overall sentiment for the profile is: ", sentiment_profile)
+
+    # Capture changes in the sentiment of the profile and when they occurred
+    capture_changes_in_sentiment()
+
+    # Capture sharp changes in the sentiment of a profile
+    find_sharp_changes()
+
+    # Capture changes in frequency of posting
+    changes_in_frequency()
+
 
 def main():
-    # look_for_consec_neg_days()
-    # capture_changes_in_sentiment()
-    # diction = capture_sentiment_days()
-    # print(diction)
-    # find_sharp_changes()
-    # changes_in_frequency()
-    capture_weekly_sentiment()
+    capture_profile_and_analyse()
 
 
 if __name__ == "__main__":
