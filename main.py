@@ -1,23 +1,12 @@
+# Import necessary packages, and methods from the utility functions file
+
 import pandas as pd
+from utility_functions import extract_days, extract_months, sanitise_date, sanitise_str
 
 # Global variables, for ease of use
 profile = pd.read_csv("pos_to_neg_tweets.csv")
 positive_phrases = pd.read_csv("pos_words.csv")
 negative_phrases = pd.read_csv("neg_words.csv")
-
-
-# Method to sanitise a string for analysis, utility method
-def sanitise_str(string):
-    string = string.lower()
-    string = string.strip()
-    return string
-
-
-# Method to sanitise a date, for analysis of frequency and summation of sentiment, utility method
-def sanitise_date(date_string):
-    date_string = date_string.strip()
-    return date_string
-
 
 # Method to capture the sentiment of a tweet
 def analyse_tweet(tweet_str):
@@ -198,14 +187,6 @@ def changes_in_frequency():
         print("Change in frequency flagged ")
     else:
         print("No change in frequency flagged")
-
-# Utility method, designed to extract the days, from a list of dates
-def extract_days(lst):
-    return [item[0] for item in lst]
-
-# Utility method, designed to extract the month, from a list of dates
-def extract_months(lst):
-    return [item[1] for item in lst]
 
 
 def capture_profile_and_analyse():
