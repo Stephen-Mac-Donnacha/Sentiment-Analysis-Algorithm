@@ -196,20 +196,22 @@ def capture_profile_and_analyse():
     print(sentiment_for_profile)
 
     # Capture the overall sentiment of a profile
-    sentiment_profile = capture_sentiment_profile()
-    print("Overall sentiment for the profile is: ", sentiment_profile)
+    # sentiment_profile = capture_sentiment_profile()
+    # print("Overall sentiment for the profile is: ", sentiment_profile)
 
     # Capture changes in the sentiment of the profile and when they occurred
-    capture_changes_in_sentiment()
+    # capture_changes_in_sentiment()
 
     # Capture sharp changes in the sentiment of a profile
-    find_sharp_changes()
+    # find_sharp_changes()
 
     # Capture changes in frequency of posting
-    changes_in_frequency()
+    # changes_in_frequency()
 
     # Capture consecutive days were the sentiment was negative
-    look_for_consec_neg_days()
+    # look_for_consec_neg_days()
+
+    return sentiment_for_profile
 
 
 def main():
