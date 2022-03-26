@@ -79,7 +79,6 @@ def capture_sentiment_days():
         tmp_key = dates[i]
         days_tweet_sent[tmp_key] = sent_tweet_array[i]
 
-    new_dict = {}
     return days_tweet_sent
 
 
@@ -147,8 +146,6 @@ def find_sharp_changes():
     tweets = profile['tweet']
     sentiment_name = []
     dates = profile['date']
-    sentiment_strength = []
-    sent_and_strength_dict = {}
     difference = 0  # The change between a positive and negative sentiment
 
     tweet_strengths = []
