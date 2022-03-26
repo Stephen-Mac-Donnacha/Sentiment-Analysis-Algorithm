@@ -160,7 +160,7 @@ def find_sharp_changes():
     for i in range(len(tweet_strengths) - 1):
         if sentiment_name[i] != sentiment_name[i + 1]:
             difference = tweet_strengths[i] - tweet_strengths[i + 1]
-            if difference > 0.5:
+            if difference > 0.8:
                 print("There was a sharp change in sentiment on: ", dates[i])
                 print("Sentiment changed from : ", sentiment_name[i], " to: ", sentiment_name[i + 1])
 
