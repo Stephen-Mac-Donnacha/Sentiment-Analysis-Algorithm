@@ -1,22 +1,31 @@
 import openpyxl
+from openpyxl.chart import PieChart
+from openpyxl.chart.series import DataPoint
 from main import capture_profile_and_analyse
 
 # Workbook saved here as a global variable
 wb = openpyxl.Workbook()
 
+
 def get_profile_data():
-    data1 = capture_profile_and_analyse()
-    return data1
+    data_arr = capture_profile_and_analyse()
+
+    for i in range(len(data_arr)):
+        data1 = data_arr[0]
+        data2 = data_arr[1]
+
+    return data1, data2
+
+
+sentiment_data = get_profile_data()[0]
 
 
 def write_sentiment_data_to_excel():
-    sentiment_data = get_profile_data()
-
     # Create worksheet for sentiment data
     sheet = wb.active
 
     # One can change the name of the title
-    sheet.title = "Sentiment Data "
+    sheet.title = "Sentiment Data"
 
     # print("Printing data to worksheet :", sheet.title)
 
@@ -29,7 +38,7 @@ def write_sentiment_data_to_excel():
 
     wb.save("C:\\Users\\Stephen Mac Donnacha\\PycharmProjects\\Final Year Project\\excel-worksheets\\fyp-data.xlsx")
 
-    
+
 def create_workbook():
     # Call a Workbook() function of openpyxl
     # to create a new blank Workbook object
@@ -42,8 +51,6 @@ def create_workbook():
     sheet.title = "sheet1"
 
     print("sheet name is titled as: " + sheet.title)
-
-
 
 
 def main():
