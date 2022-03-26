@@ -8,6 +8,7 @@ profile = pd.read_csv("pos_to_neg_tweets.csv")
 positive_phrases = pd.read_csv("pos_words.csv")
 negative_phrases = pd.read_csv("neg_words.csv")
 
+
 # Method to capture the sentiment of a tweet
 def analyse_tweet(tweet_str):
     pos_sent = 0
@@ -43,8 +44,10 @@ def analyse_tweet(tweet_str):
 
     if final_sent > 0:
         overall_sent = "positive"
-    else:
+    elif final_sent < 0:
         overall_sent = "negative"
+    else:
+        overall_sent = "neutral"
 
     # Return the overall sentiment for a tweet as well as the score of that tweet
     if overall_sent == "positive":
@@ -189,6 +192,37 @@ def changes_in_frequency():
         print("No change in frequency flagged")
 
 
+def get_tweet_amount_by_day():
+    dates = list(profile['date'])
+    tweets = list(profile['tweet'])
+    unique_days = list(dict.fromkeys(dates))
+    count_per_day = 0
+    freq_list = []
+    freq_dict = {}
+
+    for i in range(len(dates)):
+        dates[i] = sanitise_date(dates[i])
+        tweets[i] = sanitise_str(tweets[i])
+
+    for i in range(len(unique_days)):
+        unique_days[i] = sanitise_date(unique_days[i])
+
+    for i in range(len(dates) - 1):
+        if dates[i] != dates[i + 1]:
+            count_per_day = dates.count(dates[i])
+            freq_list.append(count_per_day)
+
+    # Fix / find a better way of doing this! temporary fix
+    tweets_at_final_day = dates.count(dates[-1])
+    freq_list.append(tweets_at_final_day)
+
+    for i in range(len(unique_days)):
+        tmp_key = unique_days[i]
+        freq_dict[tmp_key] = freq_list[i]
+
+    return freq_dict
+
+
 def capture_profile_and_analyse():
     # Perform the entire range of sentiment analysis for the profile
     # Capture the sentiment for each day a tweet was posted
@@ -196,22 +230,26 @@ def capture_profile_and_analyse():
     print(sentiment_for_profile)
 
     # Capture the overall sentiment of a profile
-    # sentiment_profile = capture_sentiment_profile()
-    # print("Overall sentiment for the profile is: ", sentiment_profile)
+    sentiment_profile = capture_sentiment_profile()
+    print("Overall sentiment for the profile is: ", sentiment_profile)
 
     # Capture changes in the sentiment of the profile and when they occurred
-    # capture_changes_in_sentiment()
+    capture_changes_in_sentiment()
 
     # Capture sharp changes in the sentiment of a profile
-    # find_sharp_changes()
+    find_sharp_changes()
 
     # Capture changes in frequency of posting
-    # changes_in_frequency()
+    changes_in_frequency()
 
     # Capture consecutive days were the sentiment was negative
-    # look_for_consec_neg_days()
+    look_for_consec_neg_days()
 
-    return sentiment_for_profile
+    # Find the amount of tweets per day
+    days_and_tweets = get_tweet_amount_by_day()
+    print("Days and the amount of tweets posted on them: ", days_and_tweets)
+
+    return sentiment_for_profile, days_and_tweets
 
 
 def main():
