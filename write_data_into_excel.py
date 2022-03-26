@@ -51,23 +51,7 @@ def write_frequency_data_to_excel():
     wb.save("C:\\Users\\Stephen Mac Donnacha\\PycharmProjects\\Final Year Project\\excel-worksheets\\fyp-data.xlsx")
 
 
-def create_workbook():
-    # Call a Workbook() function of openpyxl
-    # to create a new blank Workbook object
-
-    # Get workbook active sheet
-    # from the active attribute
-    sheet = wb.active
-
-    # One can change the name of the title
-    sheet.title = "sheet1"
-
-    print("sheet name is titled as: " + sheet.title)
-
-
 def main():
-    # create_workbook()
-    # get_profile_data()
     write_sentiment_data_to_excel()
     write_frequency_data_to_excel()
 
