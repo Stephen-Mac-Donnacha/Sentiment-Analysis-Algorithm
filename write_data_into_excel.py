@@ -1,6 +1,5 @@
 import openpyxl
-from openpyxl.chart import PieChart
-from openpyxl.chart.series import DataPoint
+
 from main import capture_profile_and_analyse
 
 # Workbook saved here as a global variable
@@ -17,19 +16,20 @@ def get_profile_data():
     return data1, data2
 
 
+# Store the sentiment and frequency data here
 sentiment_data = get_profile_data()[0]
 frequency_data = get_profile_data()[1]
 
 
+# Method to write sentiment data to excel
 def write_sentiment_data_to_excel():
     # Create worksheet for sentiment data
     sentiment_sheet = wb.create_sheet("Sentiment Data")
 
-    # print("Printing data to worksheet :", sheet.title)
-
     sentiment_sheet['A1'] = "Date"
     sentiment_sheet['B1'] = "Sentiment"
 
+    # For each entry, write it into the excel spreadsheet
     for row, (Date, Sentiment) in enumerate(sentiment_data.items(), start=2):
         sentiment_sheet[f"A{row}"] = Date
         sentiment_sheet[f"B{row}"] = Sentiment
@@ -37,8 +37,9 @@ def write_sentiment_data_to_excel():
     wb.save("C:\\Users\\Stephen Mac Donnacha\\PycharmProjects\\Final Year Project\\excel-worksheets\\fyp-data.xlsx")
 
 
+# Method to write frequency data to excel
 def write_frequency_data_to_excel():
-    # Create worksheet for sentiment data
+    # Create worksheet for frequency data
     frequency_sheet = wb.create_sheet("Frequency Data")
 
     frequency_sheet['A1'] = "Date"
