@@ -249,12 +249,10 @@ def find_days_with_sharp_increase_in_tweets():
     avg = get_mean_tweets()
     tweet_lst = list(freq_dict.values())
 
-    print("Method called")
-    print(tweet_lst)
     for i in range(len(freq_dict)):
         if tweet_lst[i] >= avg + 3:
             print("Sharp change in posting found, Happened on this date: ", dates[i])
-            
+
 
 def capture_profile_and_analyse():
     # Perform the entire range of sentiment analysis for the profile
