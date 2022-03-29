@@ -1,4 +1,5 @@
 # Import necessary packages, and methods from the utility functions file
+import math
 import statistics
 
 import pandas as pd
@@ -225,20 +226,32 @@ def get_tweet_amount_by_day():
 def get_mean_tweets():
     dict = get_tweet_amount_by_day()
     mean = statistics.mean(dict.values())
-    return mean
+    return math.ceil(mean)
 
 
 # Method to find days with more tweets posted
 def find_days_with_more_tweets():
     frequency_dict = get_tweet_amount_by_day()
-    dates = profile['dates']
+    dates = profile['date']
     mean = get_mean_tweets()
+    tweets_lst = list(frequency_dict.values())
 
     # Check to see if for any day the user posted more tweets than average
     for i in range(len(frequency_dict)):
-        if i > mean:
-            dif = i - mean
-            print("On this day: ", dates[i], "There was: ", dif, "more tweets posted")
+        if tweets_lst[i] > mean:
+            dif = tweets_lst[i] - mean
+            print("On this day: ", dates[i], "There was: ", dif, "more tweets posted than average")
+
+
+def find_days_with_sharp_increase_in_tweets():
+    freq_dict = get_tweet_amount_by_day()
+    dates = profile['date']
+    max_tweets = max(freq_dict.values())
+    tweet_lst = list(freq_dict.values())
+
+    for i in range(len(freq_dict)):
+        if tweet_lst[i] == max_tweets + 5:
+            print("Sharp change in posting found, Happened on this date: ", dates[i])
 
 
 def capture_profile_and_analyse():
@@ -266,6 +279,12 @@ def capture_profile_and_analyse():
     # Find the amount of tweets per day
     days_and_tweets = get_tweet_amount_by_day()
     print("Days and the amount of tweets posted on them: ", days_and_tweets)
+
+    # Find any days with sharp increases in the amount of tweets posted
+    find_days_with_sharp_increase_in_tweets()
+
+    # Find any days with more tweets than the average posted
+    find_days_with_more_tweets()
 
     return sentiment_for_profile, days_and_tweets
 
