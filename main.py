@@ -1,4 +1,5 @@
 # Import necessary packages, and methods from the utility functions file
+import statistics
 
 import pandas as pd
 from utility_functions import extract_days, extract_months, sanitise_date, sanitise_str
@@ -218,6 +219,26 @@ def get_tweet_amount_by_day():
         freq_dict[tmp_key] = freq_list[i]
 
     return freq_dict
+
+
+# Method to get the mean number of tweets per day
+def get_mean_tweets():
+    dict = get_tweet_amount_by_day()
+    mean = statistics.mean(dict.values())
+    return mean
+
+
+# Method to find days with more tweets posted
+def find_days_with_more_tweets():
+    frequency_dict = get_tweet_amount_by_day()
+    dates = profile['dates']
+    mean = get_mean_tweets()
+
+    # Check to see if for any day the user posted more tweets than average
+    for i in range(len(frequency_dict)):
+        if i > mean:
+            dif = i - mean
+            print("On this day: ", dates[i], "There was: ", dif, "more tweets posted")
 
 
 def capture_profile_and_analyse():
