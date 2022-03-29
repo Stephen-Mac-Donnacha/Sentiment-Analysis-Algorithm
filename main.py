@@ -6,7 +6,7 @@ import pandas as pd
 from utility_functions import extract_days, extract_months, sanitise_date, sanitise_str
 
 # Global variables, for ease of use
-profile = pd.read_csv("pos_to_neg_tweets.csv")
+profile = pd.read_csv("sharp_increase_tweets.csv")
 positive_phrases = pd.read_csv("pos_words.csv")
 negative_phrases = pd.read_csv("neg_words.csv")
 
@@ -246,13 +246,15 @@ def find_days_with_more_tweets():
 def find_days_with_sharp_increase_in_tweets():
     freq_dict = get_tweet_amount_by_day()
     dates = profile['date']
-    max_tweets = max(freq_dict.values())
+    avg = get_mean_tweets()
     tweet_lst = list(freq_dict.values())
 
+    print("Method called")
+    print(tweet_lst)
     for i in range(len(freq_dict)):
-        if tweet_lst[i] == max_tweets + 5:
+        if tweet_lst[i] >= avg + 3:
             print("Sharp change in posting found, Happened on this date: ", dates[i])
-
+            
 
 def capture_profile_and_analyse():
     # Perform the entire range of sentiment analysis for the profile
