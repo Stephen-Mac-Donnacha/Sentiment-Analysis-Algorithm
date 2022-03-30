@@ -117,7 +117,12 @@ def capture_changes_in_sentiment():
     overall_sentiment = capture_sentiment_profile()
     days_tweet_sent = capture_sentiment_days()
     sent_list = list(days_tweet_sent.values())
-    date_list = list(profile['date'])
+    date_list = profile['date']
+    date_list = list(dict.fromkeys(date_list))
+
+    # Sanitise dates
+    for i in range(len(date_list)):
+        date_list[i] = sanitise_date(date_list[i])
 
     for i in range(len(sent_list) - 1):
         if sent_list[i] != sent_list[i + 1]:
@@ -131,16 +136,15 @@ def look_for_consec_neg_days():
     dates_list = list(profile['date'])
     dates_list = list(dict.fromkeys(dates_list))
     neg_days_counter = 0
-    tmp_array = []
+    neg_days_array = []
 
     for i in range(len(list_sent) - 1):
         if list_sent[i] == "negative" and list_sent[i + 1] == "negative":
             neg_days_counter += 1
-            tmp_array.append(dates_list[i])
+            neg_days_array.append(dates_list[i])
 
     print("Most consecutive negative days: ", neg_days_counter)
-    print(len(tmp_array))
-    print("That lasted from: ", tmp_array[0], "to", tmp_array[-1])
+    print("That lasted from: ", neg_days_array[0], "to", neg_days_array[-1])
 
 
 # Method to look for sharp changes in sentiment
