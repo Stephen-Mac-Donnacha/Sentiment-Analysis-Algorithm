@@ -6,7 +6,7 @@ import pandas as pd
 from utility_functions import extract_days, extract_months, sanitise_date, sanitise_str
 
 # Global variables, for ease of use
-profile = pd.read_csv("sharp_increase_tweets.csv")
+profile = pd.read_csv("tweet_collection.csv")
 positive_phrases = pd.read_csv("pos_words.csv")
 negative_phrases = pd.read_csv("neg_words.csv")
 
