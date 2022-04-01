@@ -155,6 +155,7 @@ def look_for_consec_neg_days():
         splitter_list.append(i.split("-"))
     days = extract_days(splitter_list)
 
+    # Iterate over the days, calculating the distance between them to get longest consecutive negative days
     for i in range(0, len(days) - 1, 2):
         greatest_difference = 0
         difference = int(days[i + 1]) - int(days[i])
