@@ -137,14 +137,33 @@ def look_for_consec_neg_days():
     dates_list = list(dict.fromkeys(dates_list))
     neg_days_counter = 0
     neg_days_array = []
+    longest_consec_neg_days = []
 
-    for i in range(len(list_sent) - 1):
-        if list_sent[i] == "negative" and list_sent[i + 1] == "negative":
+    # Sanitise dates:
+    for i in range(len(dates_list)):
+        dates_list[i] = sanitise_date(dates_list[i])
+
+    # Get total number of negative days
+    for i in range(len(list_sent)):
+        if list_sent[i] == "negative":
             neg_days_counter += 1
             neg_days_array.append(dates_list[i])
 
-    print("Most consecutive negative days: ", neg_days_counter)
-    print("That lasted from: ", neg_days_array[0], "to", neg_days_array[-1])
+    # Break up the list of dates for ease of processing
+    splitter_list = []
+    for i in neg_days_array:
+        splitter_list.append(i.split("-"))
+    days = extract_days(splitter_list)
+
+    for i in range(0, len(days) - 1, 2):
+        greatest_difference = 0
+        difference = int(days[i + 1]) - int(days[i])
+
+        if difference > greatest_difference:
+            greatest_difference = difference
+
+    print("Total Negative Days: ", neg_days_counter)
+    print("Longest consecutive days with negative sentiment : ", greatest_difference)
 
 
 # Method to look for sharp changes in sentiment
