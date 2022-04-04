@@ -256,7 +256,7 @@ def get_mean_tweets():
 # Method to find days with more tweets posted
 def find_days_with_more_tweets():
     frequency_dict = get_tweet_amount_by_day()
-    dates = profile['date']
+    dates = list(profile['date'])
     mean = get_mean_tweets()
     tweets_lst = list(frequency_dict.values())
 
