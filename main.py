@@ -9,7 +9,7 @@ from utility_functions import extract_days, extract_months, sanitise_date, sanit
 profile = pd.read_csv("post_collection.csv")
 positive_phrases = pd.read_csv("pos_words.csv")
 negative_phrases = pd.read_csv("neg_words.csv")
-
+posts = list(profile['post'])
 
 # Method to capture the sentiment of a post
 def analyse_post(post_str):
@@ -63,7 +63,6 @@ def analyse_post(post_str):
 # Method to capture the sentiment for an overall day
 def capture_sentiment_days():
     dates = list(profile['date'])
-    posts = profile['post']
     sent_post_array = []
     sent_strength_array = []
     days_post_sent = {}
@@ -169,7 +168,6 @@ def look_for_consec_neg_days():
 
 # Method to look for sharp changes in sentiment
 def find_sharp_changes():
-    posts = profile['post']
     sentiment_name = []
     dates = profile['date']
     difference = 0  # The change between a positive and negative sentiment
@@ -217,7 +215,6 @@ def changes_in_frequency():
 
 def get_post_amount_by_day():
     dates = list(profile['date'])
-    posts = list(profile['post'])
     unique_days = list(dict.fromkeys(dates))
     count_per_day = 0
     freq_list = []
