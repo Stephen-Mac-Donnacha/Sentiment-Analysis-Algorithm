@@ -19,6 +19,7 @@ def changes_in_frequency():
     consecutive_days = 0
     gap_days = 0
     res_array = []
+    change_in_frequency = ""
 
     for i in range(len(dates)):
         res_array.append(dates[i].split("-"))
@@ -34,9 +35,9 @@ def changes_in_frequency():
             gap_days += 1
 
     if gap_days > consecutive_days:
-        print("Change in frequency flagged\n")
+        change_in_frequency = "Change in frequency flagged\n"
     else:
-        print("No change in frequency flagged\n")
+        change_in_frequency = "No change in frequency flagged\n"
 
 
 def get_post_amount_by_day():
@@ -82,12 +83,17 @@ def find_days_with_more_posts():
     dates = list(profile['date'])
     mean = get_mean_posts()
     posts_lst = list(frequency_dict.values())
+    output_str = ""
 
     # Check to see if for any day the user posted more posts than average
     for i in range(len(frequency_dict)):
         if posts_lst[i] > mean:
             dif = posts_lst[i] - mean
-            print("On this day: ", dates[i], "There was: ", dif, "more posts posted than average")
+            output_str += "On this day: " + str(dates[i]) + " "
+            output_str += "There was: " + str(dif) + " "
+            output_str += "more posts posted than average \n"
+
+    return output_str
 
 
 def find_days_with_sharp_increase_in_posts():
@@ -96,15 +102,17 @@ def find_days_with_sharp_increase_in_posts():
     avg = get_mean_posts()
     post_lst = list(freq_dict.values())
     flag = False
+    status = ""
 
     for i in range(len(freq_dict)):
         if post_lst[i] >= avg + 3:
             flag = True
-            print("Sharp increase in posting found, Happened on this date: ", dates[i])
+            status += "Sharp increase in posting found, Happened on this date: ", dates[i]
 
     if not flag:
-        print("No sharp increase in posting found")
+        status = "No sharp increase in posting found"
 
+    return status
 
 def summarise_frequency_data():
     print("Summary of frequency data for profile")

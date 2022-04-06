@@ -1,13 +1,13 @@
 import openpyxl
 
-from main import capture_profile_and_analyse
+from main import return_profile_data
 
 # Workbook saved here as a global variable
 wb = openpyxl.Workbook()
 
 
 def get_profile_data():
-    data_arr = capture_profile_and_analyse()
+    data_arr = return_profile_data()
 
     for i in range(len(data_arr)):
         data1 = data_arr[0]

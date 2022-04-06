@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
-from main import capture_profile_and_analyse
+from main import return_profile_data
 
-array = capture_profile_and_analyse()
+array = return_profile_data()
 prof_data = []
 for res in range(len(array)):
-    prof_data.append(capture_profile_and_analyse()[res])
+    prof_data.append(return_profile_data()[res])
 
 
 # Method to create a barchart for the sentiment data
