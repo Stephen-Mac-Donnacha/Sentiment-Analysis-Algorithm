@@ -1,16 +1,13 @@
 # Import necessary packages, and methods from the utility functions file
-import math
-import statistics
 
 import pandas as pd
-from utility_functions import extract_days, extract_months, sanitise_date, sanitise_str
+from utility_functions import extract_days, sanitise_date, sanitise_str
 
 # Global variables, for ease of use
 profile = pd.read_csv("post_collection.csv")
 positive_phrases = pd.read_csv("pos_words.csv")
 negative_phrases = pd.read_csv("neg_words.csv")
 posts = list(profile['post'])
-
 
 # Method to capture the sentiment of a post
 def analyse_post(post_str):
