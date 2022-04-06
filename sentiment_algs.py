@@ -117,6 +117,7 @@ def capture_changes_in_sentiment():
     sent_list = list(days_post_sent.values())
     date_list = profile['date']
     date_list = list(dict.fromkeys(date_list))
+    output_str = ""
 
     # Sanitise dates
     for i in range(len(date_list)):
@@ -124,7 +125,13 @@ def capture_changes_in_sentiment():
 
     for i in range(len(sent_list) - 1):
         if sent_list[i] != sent_list[i + 1]:
-            print("Sentiment Changed from:", sent_list[i], "to:", sent_list[i + 1], "on: ", date_list[i + 1])
+            sent_1 = str(sent_list[i])
+            sent_2 = str(sent_list[i + 1])
+            output_str += "Sentiment Changed from: " + sent_1
+            output_str += " to: " + sent_2
+            output_str += " on: " + date_list[i] + "\n"
+
+    return output_str
 
 
 # Method to look for consecutive negative days
@@ -136,6 +143,7 @@ def look_for_consec_neg_days():
     neg_days_counter = 0
     neg_days_array = []
     longest_consec_neg_days = []
+    output_str = ""
 
     # Sanitise dates:
     for i in range(len(dates_list)):
@@ -161,8 +169,10 @@ def look_for_consec_neg_days():
         if difference > greatest_difference:
             greatest_difference = difference
 
-    print("Total Negative Days: ", neg_days_counter)
-    print("Longest consecutive days with negative sentiment : ", greatest_difference)
+    output_str += "Total Negative Days: " + str(neg_days_counter)
+    output_str += "\n"
+    output_str += "Longest consecutive days with negative sentiment : " + str(greatest_difference)
+    return output_str
 
 
 # Method to look for sharp changes in sentiment
@@ -171,6 +181,7 @@ def find_sharp_changes():
     dates = profile['date']
     difference = 0  # The change between a positive and negative sentiment
     flag = False
+    sharp_changes = ""
 
     post_strengths = []
     for i in range(len(posts)):
@@ -187,7 +198,9 @@ def find_sharp_changes():
                 print("Sentiment changed from : ", sentiment_name[i], " to: ", sentiment_name[i + 1])
 
     if not flag:
-        print("No sharp changes in sentiment detected")
+        sharp_changes = "No sharp changes in sentiment detected"
+
+    return sharp_changes
 
 
 def summarise_sentiment_data():
