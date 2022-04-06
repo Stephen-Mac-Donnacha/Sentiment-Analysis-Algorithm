@@ -4,7 +4,6 @@ import statistics
 
 import pandas as pd
 from utility_functions import extract_days, extract_months, sanitise_date, sanitise_str
-from sentiment_algs import *
 
 # Global variables, for ease of use
 profile = pd.read_csv("post_collection.csv")
@@ -35,9 +34,9 @@ def changes_in_frequency():
             gap_days += 1
 
     if gap_days > consecutive_days:
-        print("Change in frequency flagged ")
+        print("Change in frequency flagged\n")
     else:
-        print("No change in frequency flagged")
+        print("No change in frequency flagged\n")
 
 
 def get_post_amount_by_day():
@@ -70,11 +69,10 @@ def get_post_amount_by_day():
     return freq_dict
 
 
-
 # Method to get the mean number of posts per day
 def get_mean_posts():
-    dict = get_post_amount_by_day()
-    mean = statistics.mean(dict.values())
+    post_by_day_dict = get_post_amount_by_day()
+    mean = statistics.mean(post_by_day_dict.values())
     return math.ceil(mean)
 
 
@@ -97,7 +95,31 @@ def find_days_with_sharp_increase_in_posts():
     dates = profile['date']
     avg = get_mean_posts()
     post_lst = list(freq_dict.values())
+    flag = False
 
     for i in range(len(freq_dict)):
         if post_lst[i] >= avg + 3:
-            print("Sharp change in posting found, Happened on this date: ", dates[i])
+            flag = True
+            print("Sharp increase in posting found, Happened on this date: ", dates[i])
+
+    if not flag:
+        print("No sharp increase in posting found")
+
+
+def summarise_frequency_data():
+    print("Summary of frequency data for profile")
+    print("*************************************")
+
+    print("Any changes in frequency flagged: ")
+    changes_in_frequency()
+
+    print("Days with posted and the amount of posts on them: \n")
+    frequency_dict = get_post_amount_by_day()
+    print(frequency_dict)
+
+    print("Are there days with more than the average increase in posts: ")
+    find_days_with_more_posts()
+
+    print("Are there any days with a sharp increase in posts: ")
+    find_days_with_sharp_increase_in_posts()
+    print("*************************************")
