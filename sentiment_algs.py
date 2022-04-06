@@ -9,6 +9,7 @@ positive_phrases = pd.read_csv("pos_words.csv")
 negative_phrases = pd.read_csv("neg_words.csv")
 posts = list(profile['post'])
 
+
 # Method to capture the sentiment of a post
 def analyse_post(post_str):
     pos_sent = 0
@@ -169,6 +170,7 @@ def find_sharp_changes():
     sentiment_name = []
     dates = profile['date']
     difference = 0  # The change between a positive and negative sentiment
+    flag = False
 
     post_strengths = []
     for i in range(len(posts)):
@@ -180,5 +182,31 @@ def find_sharp_changes():
         if sentiment_name[i] != sentiment_name[i + 1]:
             difference = post_strengths[i] - post_strengths[i + 1]
             if difference > 0.8:
+                flag = True
                 print("There was a sharp change in sentiment on: ", dates[i])
                 print("Sentiment changed from : ", sentiment_name[i], " to: ", sentiment_name[i + 1])
+
+    if not flag:
+        print("No sharp changes in sentiment detected")
+
+
+def summarise_sentiment_data():
+    print("Summary of sentiment data for profile")
+    print("*************************************")
+    print("Days and their respective sentiments:")
+    days_and_sentiment_dictionary = capture_sentiment_days()
+    print(days_and_sentiment_dictionary)
+
+    print("Overall Sentiment of the profile:")
+    profile_sentiment = capture_sentiment_profile()
+    print(profile_sentiment)
+
+    print("Are there any changes in the sentiment of the profile: ")
+    capture_changes_in_sentiment()
+
+    print("How many total negative days are there and the longest string of negative days: ")
+    look_for_consec_neg_days()
+
+    print("Are there any sharp changes in sentiment: ")
+    find_sharp_changes()
+
