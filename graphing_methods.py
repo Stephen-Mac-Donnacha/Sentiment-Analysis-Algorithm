@@ -69,7 +69,7 @@ def create_piechart_for_sentiment():
         else:
             total_neut += 1
 
-    data = {"Positive": total_pos, "Negative": total_neg, "Neutral": total_pos}
+    data = {"Positive": total_pos, "Negative": total_neg, "Neutral": total_neut}
     labels = list(data.keys())
     count = list(data.values())
     colors = ['green', 'red', 'gray']
