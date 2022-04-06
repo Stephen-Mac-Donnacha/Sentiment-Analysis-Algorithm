@@ -48,9 +48,9 @@ def create_barchart_for_frequency():
 
     fig = plt.figure(figsize=(15, 5))
     plt.bar(dates, tweet_counts, color="red", width=0.4)
-    plt.xlabel("Number of tweets posted")
+    plt.xlabel("Number of Posts posted")
     plt.ylabel("Dates")
-    plt.title("Graph of dates with the number of tweets posted on them")
+    plt.title("Graph of dates with the number of posts posted on them")
     plt.show()
 
 
