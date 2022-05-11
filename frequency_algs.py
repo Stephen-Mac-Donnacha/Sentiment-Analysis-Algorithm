@@ -114,6 +114,7 @@ def find_days_with_sharp_increase_in_posts():
 
     return status
 
+
 def summarise_frequency_data():
     print("Summary of frequency data for profile")
     print("*************************************")

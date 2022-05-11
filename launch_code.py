@@ -11,7 +11,8 @@ def get_user_option():
     print("1: Entire profile data, sentiment and frequency")
     print("2: Only data related to sentiment")
     print("3: Only data related to frequency")
-    user_choice = int(input("Choose an option corresponding to what data you wish to see "))
+    print("4: Exit program and Cancel")
+    user_choice = int(input("Choose an option corresponding to what data you wish to see: "))
     return user_choice
 
 
@@ -62,5 +63,16 @@ def main():
     explore_further_options()
 
 
+def automate():
+    while True:
+        option = input("Press Q at anytime to quit or C to continue: ")
+        if option == 'Q':
+            break
+        else:
+            u_choice = get_user_option()
+            print_user_option(u_choice)
+            explore_further_options()
+
+
 if __name__ == "__main__":
-    main()
+    automate()

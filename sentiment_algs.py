@@ -222,4 +222,3 @@ def summarise_sentiment_data():
 
     print("Are there any sharp changes in sentiment: ")
     find_sharp_changes()
-
