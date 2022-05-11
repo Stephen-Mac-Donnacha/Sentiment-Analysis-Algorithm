@@ -93,6 +93,7 @@ def find_days_with_more_posts():
             output_str += "There was: " + str(dif) + " "
             output_str += "more posts posted than average \n"
 
+
     return output_str
 
 
@@ -127,8 +128,8 @@ def summarise_frequency_data():
     print(frequency_dict)
 
     print("Are there days with more than the average increase in posts: ")
-    find_days_with_more_posts()
+    print(find_days_with_more_posts())
 
     print("Are there any days with a sharp increase in posts: ")
-    find_days_with_sharp_increase_in_posts()
+    print(find_days_with_sharp_increase_in_posts())
     print("*************************************")
