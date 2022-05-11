@@ -28,8 +28,8 @@ def print_user_option(user_choice):
 def explore_further_options():
     excel_letter = input("Would you like to output the data to excel [Y/N]: ")
     if excel_letter == "Y":
-        print("Enter S for sentiment or F for Frequency or B for Both")
-        which_data = input("Would you like to write the sentiment or frequency data to excel")
+        print("Enter S for sentiment or F for Frequency or B for Both: ")
+        which_data = input("Would you like to write the sentiment or frequency data to excel? ")
         if which_data == 'S':
             write_sentiment_data_to_excel()
         elif which_data == 'F':
@@ -42,10 +42,10 @@ def explore_further_options():
     else:
         print("Not outputting data to excel")
 
-    graph_data = input("Would you like to generate graphs for the data [Y/N]")
+    graph_data = input("Would you like to generate graphs for the data [Y/N]: ")
     if graph_data == "Y":
-        print("Enter S for sentiment or F for Frequency or B for Both")
-        which_data_2 = input("Would you like to Generate graphs for sentiment or frequency data")
+        print("Enter S for sentiment or F for Frequency or B for Both: ")
+        which_data_2 = input("Would you like to Generate graphs for sentiment or frequency data: ")
         if which_data_2 == "S":
             create_barchart_for_sentiment()
             create_piechart_for_sentiment()
@@ -55,12 +55,6 @@ def explore_further_options():
             create_barchart_for_sentiment()
             create_barchart_for_frequency()
             create_piechart_for_sentiment()
-
-
-def main():
-    u_choice = get_user_option()
-    print_user_option(u_choice)
-    explore_further_options()
 
 
 def automate():
